@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pustaka Booking smester 5 | <?= $judul; ?></title>
+    <title>Pustaka Booking| <?= $judul; ?></title>
     <link rel="icon" type="image/png" href="<?= base_url('assets/img/logo'); ?>logo-pb.png">
     <!-- Custom fonts for this template-->
     <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
