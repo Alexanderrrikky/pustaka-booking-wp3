@@ -2,7 +2,8 @@
 defined('BASEPATH') or exit('No Direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 
-class Booking extends CI_Controller {
+class Booking extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
@@ -50,7 +51,7 @@ class Booking extends CI_Controller {
 
         //memilih data buku yang untuk dimasukan ke tabel temp/keranjang melalui variabel $isi
         $d = $this->db->query("SELECT * FROM buku
-                               WHERE id = '$id_buku'")->row();
+                                WHERE id = '$id_buku'")->row();
 
         // berupa data-data yang akan disimpan ke dalam tabel temp/keranjang
         $isi = [
@@ -72,12 +73,12 @@ class Booking extends CI_Controller {
 
         //cek jika sudah memasukan 3 buku untuk dibooking dalam keranjang
         $tempuser = $this->db->query("SELECT * FROM temp
-                                      WHERE id_user='$userid'")->num_rows();
+                                    WHERE id_user='$userid'")->num_rows();
 
         //cek jika masih ada booking buku yang belum diambil
         $databooking = $this->db->query("SELECT * FROM booking
-                                         WHERE id_user = '$userid'")->num_rows();
-        
+                                        WHERE id_user = '$userid'")->num_rows();
+
         if ($databooking > 0) {
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role"alert">Masih ada booking buku sebelumnya yang belum diambil.<br>Ambil buku yang dibooking atau tunggu 1x24 jam untuk bisa dibooking kembali </div>');
 
@@ -102,7 +103,7 @@ class Booking extends CI_Controller {
 
         //pesan ketika berhasil memasukkan buku ke keranjang
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Buku berhasil ditambahkan ke keranjang .</div>');
-            redirect(base_url() . 'home');
+        redirect(base_url() . 'home');
     }
 
     public function hapusBooking()
@@ -173,15 +174,15 @@ class Booking extends CI_Controller {
                                             WHERE d.id_booking = bo.id_booking 
                                             AND d.id_buku = bu.id 
                                             AND bo.id_user = '$id_user'")->result_array();
-        
+
         $this->load->library('dompdf_gen');
-        
+
         $this->load->view('booking/bukti-pdf', $data);
-        
+
         $paper_size = 'A4'; // ukuran kertas
         $orientation = 'landscape'; //tipe format kertas potrait atau landscape
         $html = $this->output->get_output();
-        
+
         $this->dompdf->set_paper($paper_size, $orientation);
         //Convert to PDF
         $this->dompdf->load_html($html);

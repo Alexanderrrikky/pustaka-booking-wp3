@@ -1,5 +1,5 @@
 <?= $this->session->flashdata('pesan'); ?>
-<?php if(validation_errors()) : ?>
+<?php if (validation_errors()) : ?>
     <div class="alert alert-danger alert-message" role="alert">
         <?= validation_errors(); ?>
     </div>
@@ -17,7 +17,7 @@
             <!-- Tampilkan semua produk -->
             <div class="row">
                 <!-- Looping products -->
-                <?php foreach($data->result() as $b) : ?>
+                <?php foreach ($data->result() as $b) : ?>
                     <div class="col-md-2 col-md-3">
                         <div class="thumbnail" style="height: 370px;">
                             <img src="<?= base_url() ?>assets/img/upload/<?= $b->image; ?>" style="max-width: 100%; max-height: 100%; height: 200px; width: 180px;">
